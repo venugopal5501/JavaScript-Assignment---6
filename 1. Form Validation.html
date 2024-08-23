@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .row label {
+            margin-right: 10px;
+        }
+
+        .row input[type="radio"] {
+            margin-left: 56px;
+        }
+
+        .row input[type="number"] {
+            margin-left: 59px;
+        }
+
+        .row input[type="checkbox"],
+        .row select {
+            margin-left: 56px;
+
+        }
+
+        input[type="submit"] {
+            margin-left: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div class="row">
+            <label for="name">Enter First Name</label>
+            <input type="text" id="name">
+        </div>
+        <div class="row">
+            <label for="lname">Enter Last Name</label>
+            <input type="text" id="lname">
+        </div>
+        <div class="row">
+            <label for="age">Enter Age</label>
+            <input type="number" id="age" style="margin-left: 44px;">
+        </div>
+        <div class="row">
+            <label for="gender">Gender</label>
+            <div>
+                <input type="radio" id="male" name="gender">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender">
+                <label for="female">Female</label>
+                <input type="radio" id="others" name="gender">
+                <label for="others">Others</label>
+            </div>
+        </div>
+        <div class="row">
+            <label for="sport">Choose your favourite Sport</label>
+            <div>
+                <input type="checkbox" id="chess" name="sport">
+                <label for="chess">Chess</label>
+                <input type="checkbox" id="carrom" name="sport">
+                <label for="carrom">Carrom</label>
+                <input type="checkbox" id="table-tennis" name="sport">
+                <label for="table-tennis">Table Tennis</label>
+                <input type="checkbox" id="batminton" name="sport">
+                <label for="batminton">Batminton</label>
+            </div>
+        </div>
+        <div class="row">
+            <label for="distric">District</label>
+            <select id="district">
+                <option value="0">select option</option>
+                <option value="Madurai">Madurai</option>
+                <option value="Theni">Theni</option>
+                <option value="Virudhunagar">Virudhunagar</option>
+            </select>
+        </div>
+        <div class="row">
+            <label for="phone">Phone</label>
+            <input type="number" id="phone">
+        </div>
+        <div class="row">
+            <label for="emai">Email</label>
+            <input type="text" id="email" style="margin-left: 60px;">
+        </div>
+
+        <div class="sub">
+            <button onclick="validation()">submit</button>
+        </div>
+    </form>
+
+    <script>
+        function validation() {
+            var a = document.getElementById("name").value;
+            if (a == "") {
+                alert("Pleast fill first name");
+                return false;
+            }
+            var b = document.getElementById("lname").value;
+            if (b == "") {
+                alert("Pleast fill last name");
+                return false;
+            }
+            var c = document.getElementById("age").value;
+            if (c == "") {
+                alert("Pleast fill age");
+                return false;
+            }
+            var radio = document.querySelector('input[name="gender"]:checked')
+            if (!radio) {
+                alert("Please select gender");
+                return false;
+            }
+            var e = document.getElementById("district");
+            var drop = district.options[e.selectedIndex].value;
+            var drop1 = district.options[e.selectedIndex].text;
+            if (drop == 0) {
+                alert("Please select a district");
+                return false;
+            }
+
+            var phone = document.getElementById("phone").value;
+            var po = /^\d{10}$/
+            if ((phone == "")) {
+                alert("Please fill phone number");
+                return false;
+
+            }
+            else if (!po.test(phone)) {
+                alert("Please enter valid phone number");
+                return false;
+            }
+
+            var sam = document.getElementById("email").value;
+            var em = /^[a-z0-9_.]+@[a-z]+\.[a-z]{2,}$/
+            if (sam == "") {
+                alert("Please enter email address")
+            }
+            else if (!em.test(sam)) {
+                alert("Please enter valid email address")
+            }
+            var sports = Array.from(document.querySelectorAll('input[name="sport"]:checked')).length > 0;
+            if (!sports) {
+                if (!sports) {
+                    alert("Please select at least one sport");
+                    return false;
+                }
+
+            }
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>

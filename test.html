@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function isValidNoSpaces(input) {
+            // Regular expression to match a string without spaces
+            let regex = /^[a-z0-9_.]+@[a-z]+\.[a-z]{2,}$/
+            return regex.test(input);
+        }
+
+        // Test the function
+        console.log(isValidNoSpaces("venugopal14082002@gmail.com")); // true
+        console.log(isValidNoSpaces("HELLO")); // true
+        console.log(isValidNoSpaces("HelloWorld")); // false
+        console.log(isValidNoSpaces("123abc")); // true
+        console.log(isValidNoSpaces("hello world")); // false
+
+    </script>
+</body>
+
+</html>
