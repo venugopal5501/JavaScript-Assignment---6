@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+
     <style>
         .row {
             display: flex;
@@ -36,12 +37,13 @@
             margin-left: 100px;
         }
     </style>
+    <script language="javascript" type="text/javascript" src="local.js"></script>
 </head>
 
 <body>
-    <form name="form" action="/action_page.php" onsubmit="return validation()">
+    <form id="dev" name="form" action="show.html" onsubmit="return validation()" method="POST">
         <div class="row">
-            <label for="name">Enter First Name</label>
+            <label for="nam">Enter First Name</label>
             <input type="text" id="name">
         </div>
         <div class="row">
@@ -95,7 +97,7 @@
         </div>
 
         <div class="sub">
-            <button>submit</button>
+            <button onclick="submitform()">submit</button>
         </div>
     </form>
     <script src="script.js"></script>
