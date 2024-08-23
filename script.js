@@ -1,3 +1,9 @@
+
+document.getElementById('dev').addEventListener('submit', function(event) {
+    if (!validation()) {
+        event.preventDefault();
+    }
+});
 function validation() {
     var a = document.getElementById("name").value;
     if (a == "") {
@@ -55,6 +61,7 @@ function validation() {
         }
 
     }
-    return false;
+    return true;
 
 }
+
