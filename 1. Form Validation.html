@@ -57,29 +57,29 @@
         <div class="row">
             <label for="gende">Gender</label>
             <div>
-                <input type="radio" id="male" name="gender">
+                <input type="radio" id="male" name="gender" value="Male">
                 <label for="male">Male</label>
-                <input type="radio" id="female" name="gender">
+                <input type="radio" id="female" name="gender" value="Female">
                 <label for="female">Female</label>
-                <input type="radio" id="others" name="gender">
+                <input type="radio" id="others" name="gender" Value="Others">
                 <label for="others">Others</label>
             </div>
         </div>
         <div class="row">
             <label for="sport">Choose your favourite Sport</label>
             <div>
-                <input type="checkbox" id="chess" name="sport">
+                <input type="checkbox" id="chess" name="sport" value="Chess">
                 <label for="chess">Chess</label>
-                <input type="checkbox" id="carrom" name="sport">
+                <input type="checkbox" id="carrom" name="sport" Value="carrom">
                 <label for="carrom">Carrom</label>
-                <input type="checkbox" id="table-tennis" name="sport">
+                <input type="checkbox" id="table-tennis" name="sport" value="Table Tennis">
                 <label for="table-tennis">Table Tennis</label>
-                <input type="checkbox" id="batminton" name="sport">
+                <input type="checkbox" id="batminton" name="sport" value="batminton">
                 <label for="batminton">Batminton</label>
             </div>
         </div>
         <div class="row">
-            <label for="distric">District</label>
+            <label for="district">District</label>
             <select id="district">
                 <option value="0">select option</option>
                 <option value="Madurai">Madurai</option>
@@ -97,7 +97,7 @@
         </div>
 
         <div class="sub">
-            <button onclick="submitform()">submit</button>
+            <input type="submit" onclick="submitform()" value="submit">
         </div>
     </form>
     <script src="script.js"></script>
