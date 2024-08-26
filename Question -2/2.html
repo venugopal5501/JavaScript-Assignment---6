@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script defer>
-        // Load the stored data when the page loads
+    <!-- <script >
+        
         window.onload = function () {
             loadTableData();
         };
@@ -136,35 +136,83 @@
             localStorage.setItem('tableData', JSON.stringify(tableData));
             loadTableData();
         }
-    </script>
+    </script> -->
 </head>
 
 <body>
     <form id="onkeyup" onsubmit="return Total(event)" method="POST">
-        Name <input type="text" id="55"><br><br>
-        Roll Number <input type="number" id="65"><br><br>
-        Tamil <input type="number" id="1" onkeyup="Total()"><br><br>
-        English <input type="number" id="2" onkeyup="Total()"><br><br>
-        Maths <input type="number" id="3" onkeyup="Total()"><br><br>
-        Science <input type="number" id="6" onkeyup="Total()"><br><br>
-        Social Science <input type="number" id="7" onkeyup="Total()"><br><br>
+        Name <input type="text" id="name"><br><br>
+        Roll Number <input type="number" id="roll"><br><br>
+        Tamil <input type="number" id="1" onkeyup="Total(event)"><br><br>
+        English <input type="number" id="2" onkeyup="Total(event)"><br><br>
         Total<input type="number" id="4" readonly><br><br>
         Average<input type="number" id="5" readonly><br><br>
-        <button type="button" onclick="setdata()">Ok</button>
+        <button type="submit">Ok</button>
     </form>
 
-    <table>
+    <table id="mytable">
+        <thead>
         <tr>
             <th>Student Name</th>
             <th>Roll Number</th>
+            <th>Tamil</th>
+            <th>English</th>
             <th>Total</th>
             <th>Average</th>
             <th>Actions</th>
         </tr>
-        <tbody id="tea">
+        </thead>
+        <tbody>
         </tbody>
     </table>
 
 </body>
+<script>
+    function Total(event) {
+        event.preventDefault();
+
+        var a = Number(document.getElementById("1").value);
+        var b = Number(document.getElementById("2").value);
+
+        var Totals = a + b;
+        var Average = Totals / 2;
+        document.getElementById("4").value = Totals;
+        document.getElementById("5").value = Average;
+    }
+    document.getElementById("onkeyup").addEventListener("submit", function (event) {
+        event.preventDefault();
+        var one = document.getElementById("name").value;
+        var two = document.getElementById("roll").value;
+        var three=document.getElementById("1").value;
+        var four=document.getElementById("2").value;
+        var five=document.getElementById("4").value;
+        var six=document.getElementById("5").value;
+
+
+        var table = document.getElementById("mytable");
+        var row = table.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+        var cell7 = row.insertCell(6);
+    
+        cell1.textContent = one;
+        cell2.textContent = two;
+        cell3.textContent = three;
+        cell4.textContent = four;
+        cell5.textContent = five;
+        cell6.textContent = six;
+
+   
+
+
+        document.getElementById("55").value = "";
+        document.getElementById("65").value = "";
+
+    })
+</script>
 
 </html>
