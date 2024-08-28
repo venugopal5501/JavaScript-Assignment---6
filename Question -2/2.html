@@ -1,142 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- <script >
-        
-        window.onload = function () {
-            loadTableData();
-        };
-
-        function Total(event) {
-            if (event) event.preventDefault();
-            var a = Number(document.getElementById("1").value);
-            var b = Number(document.getElementById("2").value);
-            var c = Number(document.getElementById("3").value);
-            var d = Number(document.getElementById("6").value);
-            var e = Number(document.getElementById("7").value);
-            var Totals = a + b + c + d + e;
-            var Average = Totals / 5;
-            document.getElementById("4").value = Totals;
-            document.getElementById("5").value = Average;
-
-            // Store values in localStorage
-            if (typeof localStorage != "undefined") {
-                localStorage.setItem("fname", document.getElementById("55").value);
-                localStorage.setItem("Roll", document.getElementById("65").value);
-                localStorage.setItem("Tamil", a);
-                localStorage.setItem("English", b);
-                localStorage.setItem("Maths", c);
-                localStorage.setItem("Science", d);
-                localStorage.setItem("SocialScience", e);
-                localStorage.setItem("Total", Totals);
-                localStorage.setItem("Average", Average);
-            }
-        }
-
-        function setdata() {
-            if (typeof localStorage != "undefined") {
-                var fname = localStorage.getItem("fname");
-                var Roll = localStorage.getItem("Roll");
-                var Tamil = localStorage.getItem("Tamil");
-                var English = localStorage.getItem("English");
-                var Maths = localStorage.getItem("Maths");
-                var Science = localStorage.getItem("Science");
-                var SocialScience = localStorage.getItem("SocialScience");
-                var Total = localStorage.getItem("Total");
-                var Average = localStorage.getItem("Average");
-
-                var tableData = JSON.parse(localStorage.getItem('tableData')) || [];
-
-                // Add new row data
-                tableData.push({
-                    fname: fname,
-                    Roll: Roll,
-                    Tamil: Tamil,
-                    English: English,
-                    Maths: Maths,
-                    Science: Science,
-                    SocialScience: SocialScience,
-                    Total: Total,
-                    Average: Average
-                });
-
-                // Store updated table data
-                localStorage.setItem('tableData', JSON.stringify(tableData));
-
-                // Reload the table
-                loadTableData();
-
-                // Clear localStorage and input fields
-                localStorage.clear();
-                document.getElementById("55").value = "";
-                document.getElementById("65").value = "";
-                document.getElementById("1").value = "";
-                document.getElementById("2").value = "";
-                document.getElementById("3").value = "";
-                document.getElementById("6").value = "";
-                document.getElementById("7").value = "";
-                document.getElementById("4").value = "";
-                document.getElementById("5").value = "";
-            }
-        }
-
-        function loadTableData() {
-            var table = document.getElementById("tea");
-            table.innerHTML = ""; // Clear existing rows
-
-            var tableData = JSON.parse(localStorage.getItem('tableData')) || [];
-
-            // Populate the table with stored data
-            tableData.forEach(function (row, index) {
-                var newRow = table.insertRow();
-                newRow.insertCell(0).innerText = row.fname;
-                newRow.insertCell(1).innerText = row.Roll;
-                newRow.insertCell(2).innerText = row.Total;
-                newRow.insertCell(3).innerText = row.Average;
-
-                var action = newRow.insertCell(4);
-
-                var edit = document.createElement("button");
-                edit.innerText = "Edit";
-                edit.onclick = function () { editRow(index); };
-                action.appendChild(edit);
-
-                var remove = document.createElement("button");
-                remove.innerText = "Remove";
-                remove.onclick = function () { removeRow(index); };
-                action.appendChild(remove);
-            });
-        }
-
-        function editRow(index) {
-            var tableData = JSON.parse(localStorage.getItem('tableData')) || [];
-            var row = tableData[index];
-            document.getElementById("55").value = row.fname;
-            document.getElementById("65").value = row.Roll;
-            document.getElementById("1").value = row.Tamil;
-            document.getElementById("2").value = row.English;
-            document.getElementById("3").value = row.Maths;
-            document.getElementById("6").value = row.Science;
-            document.getElementById("7").value = row.SocialScience;
-
-            // Remove the edited row from the data
-            tableData.splice(index, 1);
-            localStorage.setItem('tableData', JSON.stringify(tableData));
-
-            loadTableData();
-        }
-
-        function removeRow(index) {
-            var tableData = JSON.parse(localStorage.getItem('tableData')) || [];
-            tableData.splice(index, 1);
-            localStorage.setItem('tableData', JSON.stringify(tableData));
-            loadTableData();
-        }
-    </script> -->
+    <title>Student Marks</title>
 </head>
 
 <body>
@@ -179,6 +45,7 @@
         document.getElementById("4").value = Totals;
         document.getElementById("5").value = Average;
     }
+
     document.getElementById("onkeyup").addEventListener("submit", function (event) {
         event.preventDefault();
         var one = document.getElementById("name").value;
@@ -217,17 +84,61 @@
         remove.onclick = function () { removeRow(row.rowIndex); };
         action.appendChild(remove);
 
-        document.getElementById("55").value = "";
-        document.getElementById("65").value = "";
-
+        document.getElementById("name").value = "";
+        document.getElementById("roll").value = "";
+        document.getElementById("1").value = "";
+        document.getElementById("2").value = "";
     });
-    function editRow(rowIndex) {
 
+    function editRow(rowIndex) {
+        var table = document.getElementById("mytable");
+        var row = table.rows[rowIndex];
+
+        document.getElementById("name").value = row.cells[0].textContent;
+        document.getElementById("roll").value = row.cells[1].textContent;
+        document.getElementById("1").value = row.cells[2].textContent;
+        document.getElementById("2").value = row.cells[3].textContent;
+        document.getElementById("4").value = row.cells[4].textContent;
+        document.getElementById("5").value = row.cells[5].textContent;
+
+        // Add a flag to indicate that the row is being edited
+        row.dataset.editing = "true";
     }
+
     function removeRow(rowIndex) {
         var table = document.getElementById("mytable");
         table.deleteRow(rowIndex);
     }
+
+    document.getElementById("onkeyup").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        var table = document.getElementById("mytable");
+        var rows = table.rows;
+
+        for (var i = 1; i < rows.length; i++) {
+            if (rows[i].dataset.editing === "true") {
+                // Update the row with the edited values
+                rows[i].cells[0].textContent = document.getElementById("name").value;
+                rows[i].cells[1].textContent = document.getElementById("roll").value;
+                rows[i].cells[2].textContent = document.getElementById("1").value;
+                rows[i].cells[3].textContent = document.getElementById("2").value;
+                rows[i].cells[4].textContent = document.getElementById("4").value;
+                rows[i].cells[5].textContent = document.getElementById("5").value;
+
+                // Remove the editing flag
+                rows[i].dataset.editing = "";
+
+                // Clear the form fields
+                document.getElementById("name").value = "";
+                document.getElementById("roll").value = "";
+                document.getElementById("1").value = "";
+                document.getElementById("2").value = "";
+
+                break; // Only update the first edited row
+            }
+        }
+    });
 </script>
 
 </html>
